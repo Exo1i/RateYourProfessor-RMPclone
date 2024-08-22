@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Footer from "./Components/footer";
+import Footer from "./Components/Footer";
 import NavigationBar from "./Components/NavigationBar";
 import Chat from "./Components/Chat";
 
