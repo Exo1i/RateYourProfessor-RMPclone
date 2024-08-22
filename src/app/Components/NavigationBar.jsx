@@ -18,13 +18,13 @@ export default function NavigationBar() {
         <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
           <button
             type="button"
-            class="text-white  hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 me-2 m-2 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+            className="text-white  hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 me-2 m-2 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
           >
             Log In
           </button>
           <button
             type="button"
-            class="text-white border border-gray-300 focus:outline-none hover:bg-gray-100 hover:text-black dark:hover:text-white focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-5 py-2.5 me-2 m-2 dark:text-white dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+            className="text-white border border-gray-300 focus:outline-none hover:bg-gray-100 hover:text-black dark:hover:text-white focus:ring-4 focus:ring-gray-100 font-medium rounded-full text-sm px-5 py-2.5 me-2 m-2 dark:text-white dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
           >
             Sign Up
           </button>
@@ -71,11 +71,10 @@ export default function NavigationBar() {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="lucide lucide-glasses"
-                className="inline mr-3"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="inline mr-3 lucide lucide-glasses"
               >
                 <circle cx="6" cy="15" r="4" />
                 <circle cx="18" cy="15" r="4" />
@@ -107,11 +106,11 @@ export default function NavigationBar() {
               } `}
             >
               <ul
-                class="bg-black py-2 text-sm text-white"
+                className="bg-black py-2 text-sm text-white"
                 aria-labelledby="dropdownLargeButton"
               >
                 <li>
-                  <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+                  <a href="#" className="block px-4 py-2 hover:bg-gray-100">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
@@ -119,9 +118,9 @@ export default function NavigationBar() {
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                       className="inline mr-2"
                     >
                       <path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" />
@@ -132,10 +131,10 @@ export default function NavigationBar() {
                   </a>
                 </li>
               </ul>
-              <div class="py-1">
+              <div className="py-1">
                 <a
                   href="#"
-                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                 >
                   Sign out
                 </a>
@@ -143,7 +142,7 @@ export default function NavigationBar() {
             </div>
             <li>
               <form className="flex items-center max-w-sm mx-auto">
-                <label for="simple-search" className="sr-only">
+                <label htmlFor="simple-search" className="sr-only">
                   Search
                 </label>
                 <div className="relative w-full">
@@ -159,7 +158,7 @@ export default function NavigationBar() {
               </form>
             </li>
             <form className="flex items-center max-w-sm mx-auto">
-              <label for="simple-search" className="sr-only">
+              <label htmlFor="simple-search" className="sr-only">
                 Search
               </label>
               <div className="relative w-full">

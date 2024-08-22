@@ -1,6 +1,7 @@
-import SearchProfessor from "@/app/Components/SearchProfessor";
-import LandingPage from "./landing";
+import SearchProfessor from "@/app/SearchProfessor";
+import LandingPage from "@/app/landing";
 
 export default function Home() {
   return <LandingPage />;
+  //return <SearchProfessor />;
 }

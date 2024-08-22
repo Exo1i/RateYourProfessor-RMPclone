@@ -1,5 +1,6 @@
 import Cards from "./Components/Cards";
 import Chat from "./Components/Chat";
+import Footer from "./Components/footer";
 import NavigationBar from "./Components/NavigationBar";
 
 export default function LandingPage() {
@@ -8,6 +9,7 @@ export default function LandingPage() {
       <NavigationBar />
       <Cards />
       <Chat />
+      <Footer />
     </>
   );
 }
