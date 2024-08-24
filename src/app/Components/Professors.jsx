@@ -4,23 +4,25 @@ import Skeleton from "react-loading-skeleton";
 
 const Professors = function Professors({onProfessorSelect}) {
     const [professors, setProfessors] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
+    const fetchProfessors = async (displaySkeleton) => {
+        try {
+            setLoading(displaySkeleton);
+            const response = await fetch('/api/professors');
+            const data = await response.json();
+            setProfessors(data);
+        } catch (error) {
+            console.error('Error fetching professors:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     useEffect(() => {
-        const fetchProfessors = async () => {
-            try {
-                const response = await fetch('/api/professors');
-                const data = await response.json();
-                setProfessors(data);
-            } catch (error) {
-                console.error('Error fetching professors:', error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
         fetchProfessors();
     }, []);
+    setInterval(() => {
+    }, 1000)
 
     return (<>
         <h1 className="text-4xl font-bold mb-8 text-center">Professors</h1>

@@ -7,29 +7,31 @@ import Skeleton from "react-loading-skeleton";
 
 export default function TopProfessors({onProfessorSelect}) {
     const [topSearched, setTopSearched] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
+
+    const fetchTopSearched = async (displaySkeleton) => {
+        setLoading(displaySkeleton)
+        const q = query(collection(db, "topSearched"), orderBy("clicks", "desc"));
+        const querySnapshot = await getDocs(q);
+        const sortedTopSearched = querySnapshot.docs.map(doc => doc.data());
+
+        const topSearchedData = [];
+        for (const professor of sortedTopSearched) {
+            try {
+                const response = await getProfessorData(professor.id);
+                topSearchedData.push({...response.data.node});
+            } catch (error) {
+                console.error("Error fetching professor details:", error);
+            }
+        }
+        setTopSearched(topSearchedData);
+        setLoading(false);
+    };
 
     useEffect(() => {
-        const fetchTopSearched = async () => {
-            const q = query(collection(db, "topSearched"), orderBy("clicks", "desc"));
-            const querySnapshot = await getDocs(q);
-            const sortedTopSearched = querySnapshot.docs.map(doc => doc.data());
-
-            const topSearchedData = [];
-            for (const professor of sortedTopSearched) {
-                try {
-                    const response = await getProfessorData(professor.id);
-                    topSearchedData.push({...response.data.node});
-                } catch (error) {
-                    console.error("Error fetching professor details:", error);
-                }
-            }
-            setTopSearched(topSearchedData);
-            setLoading(false);
-        };
-
-        fetchTopSearched();
+        fetchTopSearched(true);
     }, []);
+
 
     const getColorClass = (index) => {
         const colors = ["bg-red-200", "bg-green-200", "bg-blue-200", "bg-purple-200", "bg-yellow-200", "bg-pink-200"];
@@ -48,7 +50,11 @@ export default function TopProfessors({onProfessorSelect}) {
                 </div>))) : (topSearched.map((professor, index) => (<div
                 key={professor.id}
                 className={`rounded-lg shadow-lg p-4 transform transition-transform duration-300 hover:scale-105 hover:shadow-xl cursor-pointer ${getColorClass(index)}`}
-                onClick={() => onProfessorSelect(professor.id)}
+                onClick={() => {
+                    onProfessorSelect(professor.id)
+                    fetchTopSearched(false);
+
+                }}
             >
                 <h2 className="text-2xl font-semibold mt-4">{professor.firstName} {professor.lastName}</h2>
                 <p className="text-gray-500 text-sm">{professor.department} Department</p>

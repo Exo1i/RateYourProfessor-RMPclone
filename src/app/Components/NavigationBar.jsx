@@ -1,10 +1,10 @@
 "use client";
 import Image from "next/image";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {SignedOut, SignInButton, SignUpButton} from "@clerk/nextjs";
 import {searchRPM} from "@/app/Components/searchRPM";
 
-export default function NavigationBar() {
+export default function NavigationBar({handleProfessorSelect}) {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
     const [searchResults, setSearchResults] = useState([]);
@@ -15,13 +15,29 @@ export default function NavigationBar() {
 
     const handleSearch = async (event) => {
         event.preventDefault();
-        const results = await searchRPM(searchTerm); // Assuming departmentID is not provided
-        setSearchResults(results);
+        let results = await searchRPM({profName: searchTerm}); // Assuming departmentID is not provided
+        results = JSON.parse(results)
+        setSearchResults(results.slice(0, 5));
         console.log("Search results: ", results);
     };
 
+    useEffect(() => {
+        const fetchResults = async () => {
+            if (searchTerm.length > 0) {
+                let results = await searchRPM({profName: searchTerm});
+                results = JSON.parse(results)
+                console.log("Search results: ", results);
+                setSearchResults(results.slice(0, 5));
+            } else {
+                setSearchResults([]);
+            }
+        };
+
+        fetchResults();
+    }, [searchTerm]);
+
     return (
-        <nav className="bg-black fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600 fixed">
+        <nav className="bg-black w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600 fixed">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2">
                 <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
                     <Image src="/exo.png" width={80} height={10} alt="EXO" />
@@ -51,47 +67,6 @@ export default function NavigationBar() {
                     id="navbar-sticky"
                 >
                     <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 ">
-                        <button
-                            id="dropdownNavbarLink"
-                            data-dropdown-toggle="dropdownNavbar"
-                            onClick={toggleDropdown}
-                            className="flex items-center justify-between w-full py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
-                        >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                className="inline mr-3 lucide lucide-glasses"
-                            >
-                                <circle cx="6" cy="15" r="4" />
-                                <circle cx="18" cy="15" r="4" />
-                                <path d="M14 15a2 2 0 0 0-2-2 2 2 0 0 0-2 2" />
-                                <path d="M2.5 13 5 7c.7-1.3 1.4-2 3-2" />
-                                <path d="M21.5 13 19 7c-.7-1.3-1.5-2-3-2" />
-                            </svg>
-                            Professors{" "}
-                            <svg
-                                className="w-2.5 h-2.5 ms-2.5"
-                                aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 10 6"
-                            >
-                                <path
-                                    stroke="currentColor"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="m1 1 4 4 4-4"
-                                />
-                            </svg>
-                        </button>
                         <div
                             id="dropdownNavbar"
                             className={`absolute top-full z-10 font-normal bg-white divide-gray-100 shadow w-44 dark:bg-gray-700 dark:divide-gray-600 ${
@@ -147,6 +122,24 @@ export default function NavigationBar() {
                                         value={searchTerm}
                                         onChange={(e) => setSearchTerm(e.target.value)}
                                     />
+                                    {searchResults.length > 0 && (
+                                        <div
+                                            className="absolute top-full left-0 right-0 bg-white border border-gray-300 rounded-lg shadow-lg z-10">
+                                            {searchResults.map((result, index) => (
+                                                <div key={index} style={{cursor: 'pointer'}} onClick={() => {
+
+                                                    handleProfessorSelect(result.node.id);
+                                                    setIsDropdownOpen(false);
+                                                    setSearchTerm('');
+                                                }}
+                                                     className="p-2 border-b border-gray-200 last:border-b-0">
+                                                    <div
+                                                        className="font-semibold">{result.node.firstName} {result.node.lastName}</div>
+                                                    <div className="text-gray-600">{result.node.school.name}</div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
                                 </div>
                             </form>
                         </li>
