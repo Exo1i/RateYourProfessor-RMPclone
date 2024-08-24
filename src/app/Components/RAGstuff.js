@@ -26,14 +26,15 @@ export async function addProfessorToVD(data) {
             avgRating: data.data.node.avgRating,
             numRatings: data.data.node.numRatings,
             school: `${data.data.node.school.name} at ${data.data.node.school.city} in ${data.data.node.school.country}`,
+            id: data.data.node.id
         }).replace(/null/g, '""');
 
         let isInDb = await queryData(data.data.node.firstName + " " + data.data.node.lastName);
 
         console.log("isInDb:", isInDb)
-
-        console.log("Is found:", isInDb.matches[0].metadata.name === (data.data.node.firstName + " " + data.data.node.lastName));
-        if (isInDb.matches[0].metadata.name !== (data.data.node.firstName + " " + data.data.node.lastName)) {
+        if (isInDb.matches.length !== 0)
+            console.log("Is found:", isInDb.matches[0].metadata.name === (data.data.node.firstName + " " + data.data.node.lastName));
+        if (isInDb.matches.length === 0 || isInDb.matches[0].metadata.name !== (data.data.node.firstName + " " + data.data.node.lastName)) {
             const embeddedData = await generateEmbeddings(stringifiedJson);
             await upsertData({
                 passage: {

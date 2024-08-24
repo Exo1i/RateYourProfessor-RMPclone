@@ -1,220 +1,246 @@
-"use client";
-import Image from "next/image";
-export default function Cards() {
-  return (
-    <div className="grid grid-cols-1  gap-4 mt-20 mx-4  md:grid-cols-3">
-      <div className="grid gap-4 ">
-        <div className="p-10">
-          <div className="flex flex-col ">
-            <div className="flex flex-row">
-              <h1 className=" mb-2 text-9xl font-bold ">4.95</h1>
-              <h2 className=" mt-5 text-3xl text-gray-400 ">/5</h2>
-            </div>
-            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-              Meet our professor Ahmed Hamdy
-            </h5>
-            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-              He is one of the biggest instructors at cairo faculty of
-              engineering
-            </p>
-          </div>
-          <div className="flex items-center mb-2">
-            <svg
-              className="w-4 h-4 text-black-300 me-1"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-              viewBox="0 0 22 20"
-            >
-              <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-            </svg>
-            <svg
-              className="w-4 h-4 text-black-300 me-1"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-              viewBox="0 0 22 20"
-            >
-              <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-            </svg>
-            <svg
-              className="w-4 h-4 text-black-300 me-1"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-              viewBox="0 0 22 20"
-            >
-              <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-            </svg>
-            <svg
-              className="w-4 h-4 text-black-300 me-1"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-              viewBox="0 0 22 20"
-            >
-              <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-            </svg>
-            <svg
-              className="w-4 h-4 text-gray-300 me-1 dark:text-gray-500"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="currentColor"
-              viewBox="0 0 22 20"
-            >
-              <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-            </svg>
-            <p className="ms-1 text-sm font-medium text-gray-500 dark:text-gray-400">
-              4.95
-            </p>
-            <p className="ms-1 text-sm font-medium text-gray-500 dark:text-gray-400">
-              out of
-            </p>
-            <p className="ms-1 text-sm font-medium text-gray-500 dark:text-gray-400">
-              5
-            </p>
-          </div>
-          <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
-            1,745 global ratings
-          </p>
+'use client';
+import {Fragment, useEffect, useState} from "react";
+import {getProfessorData} from "@/app/Components/searchRPM";
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
+import {Dialog, Transition} from '@headlessui/react';
+import {collection, doc, getDoc, getDocs, orderBy, query, setDoc} from "firebase/firestore";
+import {db} from "@/app/config/firebase";
 
-          <article className="mt-5">
-            <div className="flex items-center mb-4">
-              <img
-                className="w-10 h-10 me-4 rounded-full"
-                src="https://images.unsplash.com/photo-1593985887762-955dccf2b71e?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt=""
-              />
-              <div className="font-medium ">
-                <p>
-                  Jese Leos{" "}
-                  <time
-                    dateTime="2014-08-16 19:00"
-                    className="block text-sm text-gray-500"
-                  >
-                    Joined on August 2014
-                  </time>
-                </p>
-              </div>
-            </div>
-            <div className="flex items-center mb-1 space-x-1 rtl:space-x-reverse">
-              <svg
-                className="w-4 h-4 text-black-300"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 22 20"
-              >
-                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-              </svg>
-              <svg
-                className="w-4 h-4 text-black-300"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 22 20"
-              >
-                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-              </svg>
-              <svg
-                className="w-4 h-4 text-black-300"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 22 20"
-              >
-                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-              </svg>
-              <svg
-                className="w-4 h-4 text-black-300"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 22 20"
-              >
-                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-              </svg>
-              <svg
-                className="w-4 h-4 text-gray-300 dark:text-gray-500"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                viewBox="0 0 22 20"
-              >
-                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-              </svg>
-              <h3 className="ms-2 text-sm font-semibold text-gray-900 dark:text-white">
-                Thinking to buy another one!
-              </h3>
-            </div>
-            <footer className="mb-5 text-sm text-gray-500 ">
-              <p>
-                Reviewed in the United Kingdom on{" "}
-                <time dateTime="2017-03-03 19:00">March 3, 2017</time>
-              </p>
-            </footer>
-            <p className="mb-2 text-gray-500">
-              I did not like his course but his explaination to the consepts is
-              great
-            </p>
-            <p className="mb-3 text-gray-500 ">Also great course materials</p>
-            <a
-              href="#"
-              className="block mb-5 text-sm font-medium text-blue-600 hover:underline dark:text-blue-500"
-            >
-              Read more
-            </a>
-            <aside>
-              <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
-                19 people found this helpful
-              </p>
-              <div className="flex items-center mt-3">
-                <a
-                  href="#"
-                  className="px-2 py-1.5 text-xs font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-                >
-                  Helpful
-                </a>
-                <a
-                  href="#"
-                  className="ps-4 text-sm font-medium text-blue-600 hover:underline dark:text-blue-500 border-gray-200 ms-4 border-s md:mb-0 dark:border-gray-600"
-                >
-                  Report abuse
-                </a>
-              </div>
-            </aside>
-          </article>
-        </div>
-      </div>
+export default function ProfessorsDashboard() {
+    const [professors, setProfessors] = useState([]);
+    const [selectedProfessor, setSelectedProfessor] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [topSearched, setTopSearched] = useState([]);
+    const [loadingTopSearched, setLoadingTopSearched] = useState(true);
 
-      <div className="grid gap-4">
-        <div>
-          <Image src="/hamdy.jpg" width={1000} height={1000} alt="prof" />
+    const fetchTopSearched = async () => {
+        const q = query(collection(db, "topSearched"), orderBy("clicks", "desc"));
+        const querySnapshot = await getDocs(q);
+        const sortedTopSearched = querySnapshot.docs.map(doc => doc.data());
+
+        const topSearchedData = [];
+        for (const professor of sortedTopSearched) {
+            try {
+                const response = await getProfessorData(professor.id);
+                topSearchedData.push({...response.data.node});
+            } catch (error) {
+                console.error("Error fetching professor details:", error);
+            }
+        }
+        setTopSearched(topSearchedData);
+        setLoadingTopSearched(false);
+    };
+
+    useEffect(() => {
+        const fetchProfessors = async () => {
+            try {
+                const response = await fetch('http://localhost:3000/api/professors');
+                const data = await response.json();
+                setProfessors(data);
+            } catch (error) {
+                console.error('Error fetching professors:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+
+        fetchProfessors();
+        fetchTopSearched();
+    }, []);
+
+    const openModal = async (teacherId) => {
+        setLoading(true);
+        try {
+            const response = await getProfessorData(teacherId);
+            setSelectedProfessor(response.data.node);
+            updateClickCount(teacherId);
+            setIsModalOpen(true);
+        } catch (error) {
+            console.error("Error fetching professor details:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+        setSelectedProfessor(null);
+    };
+
+    const updateClickCount = async (professorId) => {
+        const docRef = doc(db, "topSearched", professorId);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+            await setDoc(docRef, {clicks: docSnap.data().clicks + 1}, {merge: true});
+        } else {
+            await setDoc(docRef, {id: professorId, clicks: 1});
+        }
+
+        fetchTopSearched();
+    };
+
+    const getColorClass = (index) => {
+        const colors = ["bg-red-200", "bg-green-200", "bg-blue-200", "bg-purple-200", "bg-yellow-200", "bg-pink-200"];
+        const seed = index % colors.length;
+        return colors[seed];
+    };
+
+    const isContentLoading = loading || loadingTopSearched;
+
+    return (
+        <div className="flex flex-col items-center justify-center min-h-screen py-20 bg-gray-100">
+
+            {/* Top Searched Section */}
+            <div className="w-full px-8 mb-20">
+                <h2 className="text-3xl font-bold mb-4 text-center">Top Searched</h2>
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+                    {loadingTopSearched ? (
+                        Array(3).fill().map((_, index) => (
+                            <div key={index} className="bg-white rounded-lg shadow-lg p-4">
+                                <Skeleton height={150} />
+                                <Skeleton height={30} width="80%" className="mt-4" />
+                                <Skeleton height={20} width="60%" className="mt-2" />
+                                <Skeleton height={20} width="40%" className="mt-1" />
+                            </div>
+                        ))
+                    ) : (
+                        topSearched.map((professor, index) => (
+                            <div
+                                key={professor.id}
+                                className={`rounded-lg shadow-lg p-4 transform transition-transform duration-300 hover:scale-105 hover:shadow-xl cursor-pointer ${getColorClass(index)}`}
+                                onClick={() => openModal(professor.id)}
+                            >
+                                <h2 className="text-2xl font-semibold mt-4">{professor.firstName} {professor.lastName}</h2>
+                                <p className="text-gray-500 text-sm">{professor.department} Department</p>
+                                <p className="text-gray-600 text-sm mt-2">Avg. Rating: {professor.avgRating}</p>
+                                <p className="text-gray-600 text-sm mt-1">Avg. Difficulty: {professor.avgDifficulty}</p>
+                            </div>
+                        ))
+                    )}
+                </div>
+            </div>
+
+            {/* Title */}
+            <h1 className="text-4xl font-bold mb-8 text-center">Professors</h1>
+
+            {/* Professors Grid */}
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3 w-full px-8 mb-20">
+                {loading ? (
+                    Array(6).fill().map((_, index) => (
+                        <div key={index} className="bg-white rounded-lg shadow-lg p-4">
+                            <Skeleton height={150} />
+                            <Skeleton height={30} width="80%" className="mt-4" />
+                            <Skeleton height={20} width="60%" className="mt-2" />
+                            <Skeleton height={20} width="40%" className="mt-1" />
+                        </div>
+                    ))
+                ) : (
+                    professors.map(professor => (
+                        <div
+                            key={professor.metadata.id}
+                            className="bg-white rounded-lg shadow-lg p-4 transform transition-transform duration-300 hover:scale-105 hover:shadow-xl cursor-pointer"
+                            onClick={() => openModal(professor.metadata.id)}
+                        >
+                            <h2 className="text-2xl font-semibold mt-4">{professor.metadata.name}</h2>
+                            <p className="text-gray-500 text-sm">{professor.metadata.department} Department</p>
+                            <p className="text-gray-600 text-sm mt-2">Avg. Rating: {professor.metadata.avgRating}</p>
+                            <p className="text-gray-600 text-sm mt-1">Avg.
+                                                                      Difficulty: {professor.metadata.avgDifficulty}</p>
+                        </div>
+                    ))
+                )}
+            </div>
+
+            {/* Modal */}
+            <Transition appear show={isModalOpen} as={Fragment}>
+                <Dialog as="div" className="relative z-10" onClose={closeModal}>
+                    <Transition.Child
+                        as={Fragment}
+                        enter="ease-out duration-300"
+                        enterFrom="opacity-0"
+                        enterTo="opacity-100"
+                        leave="ease-in duration-200"
+                        leaveFrom="opacity-100"
+                        leaveTo="opacity-0"
+                    >
+                        <div className="fixed inset-0 bg-black bg-opacity-25" />
+                    </Transition.Child>
+
+                    <div className="fixed inset-0 overflow-y-auto">
+                        <div className="flex items-center justify-center min-h-full p-4 text-center">
+                            <Transition.Child
+                                as={Fragment}
+                                enter="ease-out duration-300"
+                                enterFrom="opacity-0 scale-95"
+                                enterTo="opacity-100 scale-100"
+                                leave="ease-in duration-200"
+                                leaveFrom="opacity-100 scale-100"
+                                leaveTo="opacity-0 scale-95"
+                            >
+                                <Dialog.Panel
+                                    className="w-full max-w-lg h-[80vh] transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                                    <div className="overflow-y-auto h-full">
+                                        {loading ? (
+                                            <div className="bg-white rounded-lg p-8">
+                                                <Skeleton height={30} width="80%" />
+                                                <Skeleton height={20} width="60%" className="mt-4" />
+                                                <Skeleton height={20} width="60%" className="mt-2" />
+                                                <Skeleton height={20} width="40%" className="mt-1" />
+                                                <Skeleton height={150} className="mt-4" />
+                                                <Skeleton height={20} width="90%" className="mt-2" />
+                                                <Skeleton height={20} width="90%" className="mt-2" />
+                                            </div>
+                                        ) : (
+                                            selectedProfessor && (
+                                                <div>
+                                                    <Dialog.Title as="h3"
+                                                                  className="text-2xl font-bold leading-6 text-gray-900">
+                                                        {selectedProfessor.firstName} {selectedProfessor.lastName}
+                                                    </Dialog.Title>
+                                                    <div className="mt-2">
+                                                        <p className="text-sm text-gray-500">
+                                                            {selectedProfessor.department} Department
+                                                        </p>
+                                                        <p className="text-sm text-gray-500 mt-2">
+                                                            Avg. Rating: {selectedProfessor.avgRating}
+                                                        </p>
+                                                        <p className="text-sm text-gray-500 mt-1">
+                                                            Number of Ratings: {selectedProfessor.numRatings}
+                                                        </p>
+                                                        <p className="text-sm text-gray-500 mt-2">
+                                                            School: {selectedProfessor.school.name}, {selectedProfessor.school.city}, {selectedProfessor.school.state}
+                                                        </p>
+                                                    </div>
+
+                                                    <div className="mt-4">
+                                                        <h4 className="text-lg font-bold">Ratings:</h4>
+                                                        {selectedProfessor.ratings.edges.map(({node}) => (
+                                                            <div key={node.id}
+                                                                 className="bg-gray-100 p-4 mt-4 rounded-lg">
+                                                                <p><strong>Course:</strong> {node.class}</p>
+                                                                <p><strong>Rating:</strong> {node.clarityRating}/5</p>
+                                                                <p><strong>Comment:</strong> {node.comment}</p>
+                                                                <p>
+                                                                    <strong>Date:</strong> {node.date.slice(0)
+                                                                    .split('T')[0]}
+                                                                </p>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            )
+                                        )}
+                                    </div>
+                                </Dialog.Panel>
+                            </Transition.Child>
+                        </div>
+                    </div>
+                </Dialog>
+            </Transition>
         </div>
-      </div>
-      <div className="grid gap-4 p-20">
-        <div>
-          <img
-            className="h-auto max-w-full rounded-lg"
-            src="https://scontent.fcai17-1.fna.fbcdn.net/v/t39.30808-6/455111183_881850273988905_2445855491496218593_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=HYuQvGVHHbEQ7kNvgE-rfTI&_nc_ht=scontent.fcai17-1.fna&oh=00_AYCmRI2Lrk-elGo9zk2OsEYQaZM5uuADwBQlegUj0RBIbg&oe=66CD706E"
-            alt=""
-          />
-        </div>
-        <div>
-          <img
-            className="h-auto max-w-full rounded-lg"
-            src="https://scontent.fcai17-1.fna.fbcdn.net/v/t39.30808-6/453509382_873851208122145_7792483622368155872_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=9ax_Dtkh8VgQ7kNvgHqxdQs&_nc_ht=scontent.fcai17-1.fna&oh=00_AYDCrJQA3y_ggwIFPzuuKKQK09S6C3gx_UUM0BEu10a-yg&oe=66CD889C"
-            alt=""
-          />
-        </div>
-        <div>
-          <img
-            className="h-auto max-w-full rounded-lg"
-            src="https://scontent.fcai17-1.fna.fbcdn.net/v/t39.30808-6/453597444_873850271455572_107033621698619417_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=pN-xJpDN3BsQ7kNvgEV4uQW&_nc_ht=scontent.fcai17-1.fna&oh=00_AYD5lm3ynQN096Gk2Aitj6m6wSs0WS1YAKoW1ryRAaY-Kw&oe=66CD6751"
-            alt=""
-          />
-        </div>
-      </div>
-    </div>
-  );
+    );
 }

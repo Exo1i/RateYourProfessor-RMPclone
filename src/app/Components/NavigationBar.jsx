@@ -1,16 +1,25 @@
 "use client";
 import Image from "next/image";
 import {useState} from "react";
-import {SignedOut, SignIn, SignInButton, SignUp, SignUpButton} from "@clerk/nextjs";
+import {SignedOut, SignInButton, SignUpButton} from "@clerk/nextjs";
+import {searchRPM} from "@/app/Components/searchRPM";
 
 export default function NavigationBar() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
 
     const toggleDropdown = () => {
-        console.log("Dropdown state before toggle:", isDropdownOpen); // Debugging line
         setIsDropdownOpen(!isDropdownOpen);
-        console.log("Dropdown state after toggle:", !isDropdownOpen); // Debugging line
     };
+
+    const handleSearch = async (event) => {
+        event.preventDefault();
+        const results = await searchRPM(searchTerm); // Assuming departmentID is not provided
+        setSearchResults(results);
+        console.log("Search results: ", results);
+    };
+
     return (
         <nav className="bg-black fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600 fixed">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2">
@@ -36,31 +45,6 @@ export default function NavigationBar() {
                             </button>
                         </SignUpButton>
                     </SignedOut>
-
-                    <button
-                        data-collapse-toggle="navbar-sticky"
-                        type="button"
-                        className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                        aria-controls="navbar-sticky"
-                        aria-expanded="false"
-                    >
-                        <span className="sr-only">Open main menu</span>
-                        <svg
-                            className="w-5 h-5"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 17 14"
-                        >
-                            <path
-                                stroke="currentColor"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M1 1h15M1 7h15M1 13h15"
-                            />
-                        </svg>
-                    </button>
                 </div>
                 <div
                     className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
@@ -112,7 +96,7 @@ export default function NavigationBar() {
                             id="dropdownNavbar"
                             className={`absolute top-full z-10 font-normal bg-white divide-gray-100 shadow w-44 dark:bg-gray-700 dark:divide-gray-600 ${
                                 isDropdownOpen ? "block" : "hidden"
-                            } `}
+                            }`}
                         >
                             <ul
                                 className="bg-black py-2 text-sm text-white"
@@ -151,39 +135,21 @@ export default function NavigationBar() {
                             </div>
                         </div>
                         <li>
-                            <form className="flex items-center max-w-sm mx-auto">
-                                <label htmlFor="simple-search" className="sr-only">
-                                    Search
-                                </label>
+                            <form className="flex items-center max-w-sm mx-auto" onSubmit={handleSearch}>
+                                <label htmlFor="simple-search" className="sr-only">Search</label>
                                 <div className="relative w-full">
-                                    <div
-                                        className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"></div>
                                     <input
                                         type="text"
                                         id="simple-search"
-                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:border-gray-600  dark:text-black  rounded-full	"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:border-gray-600 dark:text-black rounded-full"
                                         placeholder="Your Professor"
                                         required
+                                        value={searchTerm}
+                                        onChange={(e) => setSearchTerm(e.target.value)}
                                     />
                                 </div>
                             </form>
                         </li>
-                        <form className="flex items-center max-w-sm mx-auto">
-                            <label htmlFor="simple-search" className="sr-only">
-                                Search
-                            </label>
-                            <div className="relative w-full">
-                                <div
-                                    className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"></div>
-                                <input
-                                    type="text"
-                                    id="simple-search"
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:border-gray-600  dark:text-black  rounded-full	"
-                                    placeholder="Your Collage"
-                                    required
-                                />
-                            </div>
-                        </form>
                     </ul>
                 </div>
             </div>
