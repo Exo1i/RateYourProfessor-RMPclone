@@ -25,7 +25,7 @@ const Modal = forwardRef(function Modal({selectedProfessor}, ref) {
     ref.current = {
         showModal, hideModal, isShown: () => isOpen
     };
-    console.log('selectedProfessor:', selectedProfessor);
+    // console.log('selectedProfessor:', selectedProfessor);
     return (<Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={hideModal}>
             <Transition.Child
@@ -65,7 +65,7 @@ const Modal = forwardRef(function Modal({selectedProfessor}, ref) {
                                 </div>) : (selectedProfessor && (<div>
                                     <Dialog.Title as="h3"
                                                   className="text-2xl font-bold leading-6 text-gray-900">
-                                        {selectedProfessor.firstName} {selectedProfessor.lastName}
+                                        {selectedProfessor.id !== 'manuallyAdded' ? `${selectedProfessor.firstName} ${selectedProfessor.lastName}` : selectedProfessor.name}
                                     </Dialog.Title>
                                     <div className="mt-2">
                                         <p className="text-sm text-gray-500">
@@ -81,8 +81,7 @@ const Modal = forwardRef(function Modal({selectedProfessor}, ref) {
                                             School: {selectedProfessor.school.name}, {selectedProfessor.school.city}, {selectedProfessor.school.state}
                                         </p>
                                     </div>
-
-                                    <div className="mt-4">
+                                    {selectedProfessor.ratings && <div className="mt-4">
                                         <h4 className="text-lg font-bold">Ratings:</h4>
                                         {selectedProfessor.ratings.edges.map(({node}) => (<div key={node.id}
                                                                                                className="bg-gray-100 p-4 mt-4 rounded-lg">
@@ -94,7 +93,7 @@ const Modal = forwardRef(function Modal({selectedProfessor}, ref) {
                                                 .split('T')[0]}
                                             </p>
                                         </div>))}
-                                    </div>
+                                    </div>}
                                 </div>))}
                             </div>
                         </Dialog.Panel>

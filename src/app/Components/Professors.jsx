@@ -19,6 +19,7 @@ const Professors = function Professors({onProfessorSelect}) {
         }
     };
 
+
     useEffect(() => {
         fetchProfessors(true);
     }, []);
@@ -27,7 +28,7 @@ const Professors = function Professors({onProfessorSelect}) {
         <>
             <h1 className="text-4xl font-bold mb-8 text-center">Professors</h1>
 
-            <div className="overflow-y-auto w-[80vw] max-h-[600px]">
+            <div className="overflow-y-auto w-[80vw] max-h-[300px] ">
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-3 w-full px-8 mb-20">
                     {loading ? (
                         Array(6).fill().map((_, index) => (
@@ -39,19 +40,23 @@ const Professors = function Professors({onProfessorSelect}) {
                             </div>
                         ))
                     ) : (
-                        professors.map(professor => (
-                            <div
-                                key={professor.metadata.id}
-                                className="bg-white rounded-lg shadow-lg p-4 transform transition-transform duration-300 hover:scale-105 hover:shadow-xl cursor-pointer"
-                                onClick={() => onProfessorSelect(professor.metadata.id)}
-                            >
-                                <h2 className="text-2xl font-semibold mt-4">{professor.metadata.name}</h2>
-                                <p className="text-gray-500 text-sm">{professor.metadata.department} Department</p>
-                                <p className="text-gray-600 text-sm mt-2">Avg.
-                                                                          Rating: {professor.metadata.avgRating}</p>
-                                <p className="text-gray-600 text-sm mt-1">Avg.
-                                                                          Difficulty: {professor.metadata.avgDifficulty}</p>
-                            </div>
+                        professors.map(professor => (professor.metadata ?
+                                (<div
+                                    key={professor.metadata.id}
+                                    className="bg-white rounded-lg shadow-lg p-4 transform transition-transform duration-300 hover:scale-105 hover:shadow-xl cursor-pointer"
+                                    onClick={() => {
+                                        if (professor.metadata.id === 'manuallyAdded') onProfessorSelect(professor.metadata.id, professor.metadata)
+                                        else
+                                            onProfessorSelect(professor.metadata.id)
+                                    }}
+                                >
+                                    <h2 className="text-2xl font-semibold mt-4">{professor.metadata.name}</h2>
+                                    <p className="text-gray-500 text-sm">{professor.metadata.department} Department</p>
+                                    <p className="text-gray-600 text-sm mt-2">Avg.
+                                                                              Rating: {professor.metadata.avgRating}</p>
+                                    <p className="text-gray-600 text-sm mt-1">Avg.
+                                                                              Difficulty: {professor.metadata.avgDifficulty}</p>
+                                </div>) : undefined
                         ))
                     )}
                 </div>

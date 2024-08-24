@@ -61,7 +61,7 @@ export async function updateProfessorInVD(data) {
     }))));
 }
 
-async function upsertData(originalData, data) {
+export async function upsertData(originalData, data) {
     const flattenedMetadata = flattenObject(originalData.passage);
 
     return await index.upsert([{id: `${Date.now()}`, values: data, metadata: flattenedMetadata}]);
@@ -92,13 +92,13 @@ async function updateData(originalData, data) {
     return vectors;
 }
 
-async function generateEmbeddings(text) {
+export async function generateEmbeddings(text) {
 
 
     const together = new Together({apiKey: process.env.TOGETHER_API_KEY});
 
     const response = await together.embeddings.create({
-        model: "WhereIsAI/UAE-Large-V1", input: text.slice(0, 2049)
+        model: "WhereIsAI/UAE-Large-V1", input: JSON.stringify(text).slice(0, 2049)
     });
 
     // console.log("Generated Embeddings:", response.data)

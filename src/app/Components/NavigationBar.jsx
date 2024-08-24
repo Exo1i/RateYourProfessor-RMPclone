@@ -9,9 +9,6 @@ export default function NavigationBar({handleProfessorSelect}) {
     const [searchTerm, setSearchTerm] = useState('');
     const [searchResults, setSearchResults] = useState([]);
 
-    const toggleDropdown = () => {
-        setIsDropdownOpen(!isDropdownOpen);
-    };
 
     const handleSearch = async (event) => {
         event.preventDefault();
@@ -127,11 +124,37 @@ export default function NavigationBar({handleProfessorSelect}) {
                                             className="absolute top-full left-0 right-0 bg-white border border-gray-300 rounded-lg shadow-lg z-10">
                                             {searchResults.map((result, index) => (
                                                 <div key={index} style={{cursor: 'pointer'}} onClick={() => {
-
                                                     handleProfessorSelect(result.node.id);
+                                                    fetch('/api/professors', {
+                                                        method: 'POST',
+                                                        headers: {
+                                                            'Content-Type': 'application/json',
+                                                        },
+                                                        body: JSON.stringify({
+                                                            name: result.node.firstName + " " + result.node.lastName,
+                                                            school: result.node.school.name,
+                                                            avgDifficulty: result.node.avgDifficulty,
+                                                            avgRating: result.node.avgRating,
+                                                            department: result.node.department,
+                                                            id: result.node.id,
+                                                            numRatings: result.node.numRatings,
+                                                            relatedTeachers: result.node?.relatedTeachers?.map((teacher) => {
+                                                                return {
+                                                                    name: teacher.firstName + " " + teacher.lastName,
+                                                                    id: teacher.id,
+                                                                    avgRating: teacher.avgRating,
+                                                                    avgDifficulty: teacher.avgDifficulty,
+                                                                    numRatings: teacher.numRatings,
+                                                                    department: teacher.department,
+                                                                    school: teacher.school.name,
+                                                                } ?? "";
+                                                            }),
+                                                        }),
+                                                    })
                                                     setIsDropdownOpen(false);
                                                     setSearchTerm('');
-                                                }}
+                                                }
+                                                }
                                                      className="p-2 border-b border-gray-200 last:border-b-0">
                                                     <div
                                                         className="font-semibold">{result.node.firstName} {result.node.lastName}</div>

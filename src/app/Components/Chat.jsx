@@ -92,7 +92,7 @@ export default function Chat() {
                     className="fixed bottom-[calc(4rem+1.5rem)] drop-shadow-2xl right-0 mr-4 bg-white p-6 rounded-lg border border-[#e5e7eb] w-[440px] h-[634px] flex flex-col">
                     <div className="flex flex-col space-y-1.5 pb-6">
                         <h2 className="font-semibold text-lg tracking-tight">Tutor-rific AI Assistant</h2>
-                        <p className="text-sm text-[#6b7280] leading-3">Powered by HuggingFace and PineCone &ensp;🥳
+                        <p className="text-sm text-[#6b7280] leading-3">Powered by TogetherAi and PineCone &ensp;🥳
                                                                         🎉</p>
                     </div>
 
