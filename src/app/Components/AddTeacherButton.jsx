@@ -12,8 +12,7 @@ const AddTeacherButton = () => {
         setIsOpen(false);
     }
 
-    return (
-        <div className={"mt-5"}>
+    return (<div className={"mt-5"}>
             <button
                 onClick={isOpen ? handleClose : handleOpen}
                 className="text-white bg-blue-500 hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-4"
@@ -21,8 +20,7 @@ const AddTeacherButton = () => {
                 Add Teacher
             </button>
             <Modal isOpen={isOpen} handleOpen={handleOpen} handleClose={handleClose} />
-        </div>
-    );
+        </div>);
 };
 
 export default AddTeacherButton;
@@ -47,8 +45,7 @@ function Modal({isOpen, handleClose}) {
     const handleChange = (e) => {
         const {name, value} = e.target;
         setFormData(prevState => ({
-            ...prevState,
-            [name]: value
+            ...prevState, [name]: value
         }));
     };
 
@@ -56,17 +53,25 @@ function Modal({isOpen, handleClose}) {
         e.preventDefault();
         console.log('Form Data:', formData);
         fetch('/api/professors', {
-            method: 'POST',
-            headers: {
+            method: 'POST', headers: {
                 'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
+            }, body: JSON.stringify(formData)
+        })
+        setFormData({
+            id: 'manuallyAdded',
+            name: '',
+            department: '',
+            avgRating: '',
+            avgDifficulty: '',
+            school: '',
+            city: '',
+            state: '',
+            numRatings: 1
         })
         hideModal();
     };
 
-    return (
-        <Transition appear show={isOpen} as={Fragment}>
+    return (<Transition appear show={isOpen} as={Fragment}>
             <Dialog as="div" className="relative z-10" onClose={hideModal}>
                 <Transition.Child
                     as={Fragment}
@@ -180,6 +185,5 @@ function Modal({isOpen, handleClose}) {
                     </Transition.Child>
                 </div>
             </Dialog>
-        </Transition>
-    );
+        </Transition>);
 }
