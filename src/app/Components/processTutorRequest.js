@@ -9,8 +9,7 @@ export async function processTutorRequest(data) {
 
     async function generateAIResponse(messages, context = null) {
         const systemInstructions = {
-            "role": "system",
-            "content": `You are an AI tutor recommendation assistant. CRUCIAL: You must ONLY use the data and methods provided through the specified API calls. DO NOT rely on or reference any pre-existing knowledge about professors or educational institutions. Follow these guidelines strictly:
+            "role": "system", "content": `You are an AI tutor recommendation assistant. CRUCIAL: You must ONLY use the data and methods provided through the specified API calls. DO NOT rely on or reference any pre-existing knowledge about professors or educational institutions. Follow these guidelines strictly:
 
 1. ALWAYS use double quotes "" for JSON, never single quotes ''.
 2. WAIT for user queries. DO NOT initiate conversations.
@@ -24,7 +23,7 @@ export async function processTutorRequest(data) {
    {"operation":"query", "data":"John Doe", "type":"recommendTutors"}
 7. For RateMyProfessor URL queries, ALWAYS respond with:
    {"operation":"upsert", "data":"teacher-id", "type":"addTutorToVD"}
-8. To parse a tutor's RateMyProfessor page, ALWAYS respond with:
+8. To parse a tutor's RateMyProfessor page, ALWAYS respond with where the id is the last part in the url like this: https://www.ratemyprofessors.com/professor/1784861, 1784861 is the id:
    {"operation":"query", "data":"teacher-id", "type":"parseTutor"}
 9. When given context from a previous operation, DO NOT respond with JSON. Instead, provide a normal response based ONLY on the given context.
 10. Only use departments from this list: ${JSON.stringify(validDepartments)}. If not found, inform the user.
@@ -35,13 +34,10 @@ Remember: You have NO pre-existing knowledge about specific professors or instit
         };
 
         if (context) {
-            messages = [
-                ...messages,
-                {
-                    role: 'system',
-                    content: `Context from previous operation: ${JSON.stringify(context)}. Provide a helpful response based ONLY on this context. DO NOT add any information not present in this context.`
-                }
-            ];
+            messages = [...messages, {
+                role: 'system',
+                content: `Context from previous operation: ${JSON.stringify(context)}. Provide a helpful response based ONLY on this context. DO NOT add any information not present in this context.`
+            }];
         }
 
         const chatResponse = await together.chat.completions.create({
@@ -72,10 +68,7 @@ Remember: You have NO pre-existing knowledge about specific professors or instit
         }
         const {text: jsonResponseText, context} = await processJsonResponse(initialResponse);
 
-        const updatedMessages = [
-            ...data.messages,
-            {role: "assistant", content: jsonResponseText}
-        ];
+        const updatedMessages = [...data.messages, {role: "assistant", content: jsonResponseText}];
         const finalResponse = await generateAIResponse(updatedMessages, context);
 
         return {text: finalResponse};
