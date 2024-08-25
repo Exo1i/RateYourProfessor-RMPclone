@@ -7,6 +7,7 @@ const headers = {
     "Content-Type": "application/json",
     Origin: "https://www.ratemyprofessors.com",
     Referer: "https://www.ratemyprofessors.com/",
+    mode: 'no-cors'
 };
 
 export async function searchRPM(data) {
