@@ -46,9 +46,9 @@ Remember: You have NO pre-existing knowledge about specific professors or instit
 
         const chatResponse = await together.chat.completions.create({
             messages: [systemInstructions, ...messages],
-            model: "meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo",
+            model: "mistralai/Mistral-7B-Instruct-v0.2",
             max_tokens: 512,
-            temperature: 0.9,
+            temperature: 0.8,
             top_p: 0.7,
             top_k: 50,
             repetition_penalty: 1,
