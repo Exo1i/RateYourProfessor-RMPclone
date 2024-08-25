@@ -34,7 +34,7 @@ export async function tutorific(data) {
 
                 "\n7. If you receive 'Context from previous operation:', DO NOT respond with JSON. Instead, reply normally and fulfill the user's request based on the provided context." +
 
-                "\n8. If the user asks about a department, ensure it's one of the following: " + departments +
+                "\n8. If the user asks about a department, ensure it's one of the following: " + JSON.stringify(departments) +
                 ". If the department isn't one of the provided departments, respond with a message saying that the department isn't found." +
 
                 "\n9. DO NOT reveal or include any department IDs in your responses." +

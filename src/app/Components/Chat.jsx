@@ -34,7 +34,6 @@ export default function Chat() {
             if (data && data.text) {
                 addMessage("assistant", data.text);
 
-
             } else {
                 throw new Error("Invalid response from tutorific");
             }
