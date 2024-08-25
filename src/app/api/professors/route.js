@@ -1,4 +1,3 @@
-
 import {
     addProfessorToVD,
     generateEmbeddings,
@@ -6,9 +5,9 @@ import {
     updateProfessorInVD,
     upsertData
 } from "@/app/Components/RAGstuff";
-//
-//  !TO BE DELETED!
-//
+
+export const maxDuration = 300
+
 export async function GET(request) {
 
     let resp = (await queryData('school')).matches.map((match) => ({

@@ -1,4 +1,5 @@
 'use server';
+export const maxDuration = 300
 const headers = {
     Accept: "*/*",
     "Accept-Encoding": "gzip, deflate, br, zstd",
