@@ -48,7 +48,7 @@ export default async function handleTutorRequest(jsonReq) {
                                 }
                             };
                         } else {
-                            const teacherList = parsedResults.map(result => {
+                            const teacherList = parsedResults.map(async result => {
                                 const t = result.node;
                                 addProfessorToVD(t.id);
                                 return `${t.firstName} ${t.lastName} (${t.school.name}, ${t.department})`;
@@ -96,7 +96,7 @@ export default async function handleTutorRequest(jsonReq) {
                                 }
                             };
                         } else {
-                            const teacherList = parsedResults.slice(0, 5).map(result => {
+                            const teacherList = parsedResults.slice(0, 5).map(async result => {
                                 const t = result.node;
                                 addProfessorToVD(t.id);
                                 return `${t.firstName} ${t.lastName} (Average rating: ${t.avgRating})`;
