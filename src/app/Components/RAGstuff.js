@@ -1,3 +1,4 @@
+'use server'
 import {RecursiveCharacterTextSplitter} from "langchain/text_splitter";
 import {Pinecone} from '@pinecone-database/pinecone';
 import {getProfessorData} from "@/app/Components/searchRPM";
@@ -9,7 +10,7 @@ const index = pc.index("professorsvd");
 export async function queryData(query) {
     const embeddings = await generateEmbeddings(JSON.stringify(query));
     return await index.query({
-        topK: 10, vector: embeddings, includeValues: false, includeMetadata: true
+        topK: 100, vector: embeddings, includeValues: false, includeMetadata: true
     });
 }
 
@@ -39,7 +40,7 @@ export async function addProfessorToVD(data) {
             await upsertData({
                 passage: {
                     ...JSON.parse(stringifiedJson),
-                    ratings: data.data.node.ratings.edges.map(rating => `${rating?.node?.class}: ${rating?.node?.comment}, difficulty rating: ${rating?.node?.difficultyRating}`).slice(0, 4),
+                    ratings: data.data.node.ratings.edges.map(rating => `${rating?.node?.class}: ${rating?.node?.comment}, difficulty rating: ${rating?.node?.difficultyRating}`)?.slice(0, 4) ?? [],
                     relatedTeachers: data.data.node.relatedTeachers
                 }
             }, embeddedData);

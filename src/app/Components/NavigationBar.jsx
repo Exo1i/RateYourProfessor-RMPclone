@@ -131,26 +131,9 @@ export default function NavigationBar({handleProfessorSelect}) {
                                                             'Content-Type': 'application/json',
                                                         },
                                                         body: JSON.stringify({
-                                                            name: result.node.firstName + " " + result.node.lastName,
-                                                            school: result.node.school.name,
-                                                            avgDifficulty: result.node.avgDifficulty,
-                                                            avgRating: result.node.avgRating,
-                                                            department: result.node.department,
                                                             id: result.node.id,
-                                                            numRatings: result.node.numRatings,
-                                                            relatedTeachers: result.node?.relatedTeachers?.map((teacher) => {
-                                                                return {
-                                                                    name: teacher.firstName + " " + teacher.lastName,
-                                                                    id: teacher.id,
-                                                                    avgRating: teacher.avgRating,
-                                                                    avgDifficulty: teacher.avgDifficulty,
-                                                                    numRatings: teacher.numRatings,
-                                                                    department: teacher.department,
-                                                                    school: teacher.school.name,
-                                                                } ?? "";
-                                                            }),
                                                         }),
-                                                    })
+                                                    });
                                                     setIsDropdownOpen(false);
                                                     setSearchTerm('');
                                                 }

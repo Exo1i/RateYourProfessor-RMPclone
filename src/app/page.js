@@ -17,7 +17,7 @@ export default function Home() {
         }
     }, [modalRef.current?.isShown])
     const handleProfessorSelect = async (professorId, manuallyAddedTeacherContents = null) => {
-            if (professorId === 'manuallyAdded' && manuallyAddedTeacherContents) {
+            if (professorId.includes('manuallyAdded') && manuallyAddedTeacherContents) {
                 return;
             } else
                 try {

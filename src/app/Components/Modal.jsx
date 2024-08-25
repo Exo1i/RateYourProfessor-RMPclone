@@ -54,7 +54,7 @@ const Modal = forwardRef(function Modal({selectedProfessor}, ref) {
                         <Dialog.Panel
                             className="w-full max-w-lg h-[80vh] transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                             <div className="overflow-y-auto h-full">
-                                {loading ? (<div className="bg-white rounded-lg p-8">
+                                {loading ? <div className="bg-white rounded-lg p-8">
                                     <Skeleton height={30} width="80%" />
                                     <Skeleton height={20} width="60%" className="mt-4" />
                                     <Skeleton height={20} width="60%" className="mt-2" />
@@ -62,10 +62,10 @@ const Modal = forwardRef(function Modal({selectedProfessor}, ref) {
                                     <Skeleton height={150} className="mt-4" />
                                     <Skeleton height={20} width="90%" className="mt-2" />
                                     <Skeleton height={20} width="90%" className="mt-2" />
-                                </div>) : (selectedProfessor && (<div>
+                                </div> : selectedProfessor && (<div>
                                     <Dialog.Title as="h3"
                                                   className="text-2xl font-bold leading-6 text-gray-900">
-                                        {selectedProfessor.id !== 'manuallyAdded' ? `${selectedProfessor.firstName} ${selectedProfessor.lastName}` : selectedProfessor.name}
+                                        {selectedProfessor.id.includes('manuallyAdded') ? selectedProfessor.name : `${selectedProfessor.firstName} ${selectedProfessor.lastName}`}
                                     </Dialog.Title>
                                     <div className="mt-2">
                                         <p className="text-sm text-gray-500">
@@ -94,7 +94,7 @@ const Modal = forwardRef(function Modal({selectedProfessor}, ref) {
                                             </p>
                                         </div>))}
                                     </div>}
-                                </div>))}
+                                </div>)}
                             </div>
                         </Dialog.Panel>
                     </Transition.Child>
