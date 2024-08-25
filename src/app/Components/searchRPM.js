@@ -1,3 +1,4 @@
+'use server';
 const headers = {
     Accept: "*/*",
     "Accept-Encoding": "gzip, deflate, br, zstd",
@@ -7,7 +8,8 @@ const headers = {
     "Content-Type": "application/json",
     Origin: "https://www.ratemyprofessors.com",
     Referer: "https://www.ratemyprofessors.com/",
-    mode: 'no-cors'
+    "allow-cross-origin": "true",
+    'Access-Control-Allow-Origin': '*',
 };
 
 export async function searchRPM(data) {

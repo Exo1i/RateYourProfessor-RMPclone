@@ -31,7 +31,7 @@ export default function TopProfessors({onProfessorSelect}) {
             }
             if (!topSearchedData.length)
                 throw new Error("No top searched professors found, Probably a network issue");
-            setTopSearched(topSearchedData);
+            setTopSearched(topSearchedData.slice(0, 6));
         } catch (error) {
             console.error("Error fetching top searched professors:", error);
             if (error.code === 'unavailable') {
