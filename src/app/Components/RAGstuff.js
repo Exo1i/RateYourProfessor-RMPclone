@@ -4,7 +4,7 @@ import {Pinecone} from '@pinecone-database/pinecone';
 import {getProfessorData} from "@/app/Components/searchRPM";
 import Together from "together-ai";
 
-const pc = new Pinecone({apiKey: `6ab0b040-9b31-4302-9126-4a003c376152`});
+const pc = new Pinecone({apiKey: process.env.PINECODE_API_KEY});
 const index = pc.index("professorsvd");
 
 export async function queryData(query) {

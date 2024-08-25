@@ -1,4 +1,4 @@
-let departments = {
+let validDepartments = {
     "asl & deaf studies": "RGVwYXJ0bWVudC0xNDIz",
     "aboriginal studies": "RGVwYXJ0bWVudC0zMDAz",
     "acad": "RGVwYXJ0bWVudC0yMDcw",
@@ -107,4 +107,4 @@ let departments = {
     "american lng/culture institute": "RGVwYXJ0bWVudC0yMTc5"
 }
 
-export default departments;
+export default validDepartments;

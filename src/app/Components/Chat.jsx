@@ -2,7 +2,7 @@
 import React, {useCallback, useEffect, useRef, useState} from "react";
 import {MessageCircle, User} from "lucide-react";
 import Image from "next/image";
-import {tutorific} from "@/app/Components/tutorific";
+import {processTutorRequest} from "@/app/Components/processTutorRequest";
 
 export default function Chat() {
     const [isOpen, setIsOpen] = useState(false);
@@ -27,7 +27,7 @@ export default function Chat() {
         setInputMessage("");
 
         try {
-            const data = await tutorific({
+            const data = await processTutorRequest({
                 messages: [...messages, {role: "user", content: userMessage}]
             });
 
@@ -35,7 +35,7 @@ export default function Chat() {
                 addMessage("assistant", data.text);
 
             } else {
-                throw new Error("Invalid response from tutorific");
+                throw new Error("Invalid response from processTutorRequest");
             }
         } catch (error) {
             console.error("Error sending message:", error);

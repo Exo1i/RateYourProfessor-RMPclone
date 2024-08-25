@@ -1,8 +1,8 @@
 import {getProfessorData, searchRPM} from "@/app/Components/searchRPM";
 import {addProfessorToVD, queryData} from "@/app/Components/RAGstuff";
-import departments from "../../../public/departments";
+import validDepartments from "../../../public/validDepartments";
 
-export default async function handleJsonRequest(jsonReq) {
+export default async function handleTutorRequest(jsonReq) {
     switch (jsonReq.operation) {
         case 'query': {
             switch (jsonReq.type) {
@@ -79,11 +79,11 @@ export default async function handleJsonRequest(jsonReq) {
                     }
                 case 'departmentSearch':
                     try {
-                        if (departments[jsonReq.data.toString().toLowerCase()] === undefined) {
+                        if (validDepartments[jsonReq.data.toString().toLowerCase()] === undefined) {
                             throw new Error("Department not found in the list.");
                         }
 
-                        const results = await searchRPM({departmentID: departments[jsonReq.data.toString().toLowerCase()]});
+                        const results = await searchRPM({departmentID: validDepartments[jsonReq.data.toString().toLowerCase()]});
                         const parsedResults = JSON.parse(results);
                         if (parsedResults.length === 0) {
                             return {
