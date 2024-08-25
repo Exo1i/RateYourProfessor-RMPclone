@@ -61,6 +61,14 @@ Remember: You have NO pre-existing knowledge about specific professors or instit
     const initialResponse = await generateAIResponse(data.messages);
 
     if (initialResponse.includes('operation') && initialResponse.includes('{')) {
+        try {
+            let slicedMessage = initialResponse.slice(initialResponse.indexOf('{'), initialResponse.lastIndexOf('}') + 1).replace(/'/g, '"');
+            let jsonResp = JSON.parse(slicedMessage)
+            if (jsonResp.type === 'departmentSearch' && !validDepartments[jsonResp.data.toLowerCase()]) {
+                return {text: `The department "${jsonResp.data}" is not valid. Please choose from the following departments: ${Object.keys(validDepartments).join(', ')}.`}
+            }
+        } catch (e) {
+        }
         const {text: jsonResponseText, context} = await processJsonResponse(initialResponse);
 
         const updatedMessages = [
