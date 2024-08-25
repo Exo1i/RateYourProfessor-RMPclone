@@ -1,5 +1,4 @@
 'use server'
-export const maxDuration = 300
 import {RecursiveCharacterTextSplitter} from "langchain/text_splitter";
 import {Pinecone} from '@pinecone-database/pinecone';
 import {getProfessorData} from "@/app/Components/searchRPM";

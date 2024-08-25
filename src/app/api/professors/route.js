@@ -6,7 +6,6 @@ import {
     upsertData
 } from "@/app/Components/RAGstuff";
 
-export const maxDuration = 300
 
 export async function GET(request) {
 

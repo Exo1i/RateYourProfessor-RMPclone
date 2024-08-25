@@ -1,5 +1,4 @@
 'use server'
-export const maxDuration = 300
 
 import handleTutorRequest from "@/app/Components/handleTutorRequest";
 import Together from "together-ai";
