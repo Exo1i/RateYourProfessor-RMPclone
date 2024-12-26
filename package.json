@@ -32,7 +32,8 @@
     "react-loading-skeleton": "^3.4.0",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
-    "together-ai": "^0.6.0-alpha.4"
+    "together-ai": "^0.6.0-alpha.4",
+    "untitled": "file:"
   },
   "devDependencies": {
     "eslint": "^8",

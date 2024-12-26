@@ -1,4 +1,39 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next.js Project
+
+This is a modern web application built with Next.js and several powerful technologies.
+
+## Core Technologies
+
+- **Next.js 14** - React framework for production
+- **React 18** - UI library
+- **TypeScript** - Type-safe JavaScript
+- **Tailwind CSS** - Utility-first CSS framework
+
+## AI & Machine Learning
+- Mistral AI integration via `@ai-sdk/mistral`
+- Hugging Face inference using `@huggingface/inference`
+- LangChain for AI/ML workflows
+- Together AI integration
+
+## Authentication & User Management
+- Clerk Authentication (`@clerk/nextjs`)
+
+## Database & Storage
+- Firebase
+  - Firestore
+  - Authentication
+  - Storage
+  - Real-time Database
+- Pinecone Vector Database
+
+## Real-time Features
+- Ably for real-time messaging and pub/sub
+
+## UI Components
+- Headless UI (`@headlessui/react`)
+- Radix UI primitives
+- Lucide React icons
+- Loading skeletons for better UX
 
 ## Getting Started
 
@@ -17,8 +52,6 @@ bun dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
 ## Learn More
 
